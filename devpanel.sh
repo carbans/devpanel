@@ -16,7 +16,7 @@ SUBDOMAIN=$5
 HOME_USER=/var/www/$SUBDOMAIN
 EMAIL='persona@correotuempresa.com'
 WORDPRESS_INSTALL_PATH=/var/www/wordpress/
-
+MYSQL=`which mysql`
 
 ########## VARIABLE CONEXIÓN BD #####################3
 DB_ROOT='root'
@@ -45,14 +45,14 @@ useradd -d $HOME_USER -p $PASS $USER
 #Generamos la base de datos con los datos del usuario y su contraseña
 #Generamos la BD en mysql
 
-mysql -u $DB_ROOT -p$DB_ROOT_PASS <<EOF
-CREATE DATABASE $DB_NAME;
-EOF
 
-mysql -u $DB_ROOT -p$DB_ROOT_PASS $DB_NAME <<EOF
-CREATE USER $DB_USER@localhost IDENTIFIED BY $DB_PASS;
-GRANT ALL PRIVILEGES $DB_NAME.* TO $DB_USER@localhost;
-EOF
+
+Q1="CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+Q2="GRANT USAGE ON *.* TO $DB_USER@localhost IDENTIFIED BY '$DB_PASS';"
+Q3="GRANT ALL PRIVILEGES ON $DB_NAME.* TO $DB_USER@localhost;"
+Q4="FLUSH PRIVILEGES;"
+SQL="${Q1}${Q2}${Q3}${Q4}"
+$MYSQL -uroot -p -e "$SQL"
 
 #Generamos el vhost de apache y lo iniciamos
 

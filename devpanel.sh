@@ -6,6 +6,14 @@
 #@Author: Carlos Latorre Sánchez
 #El parametro $0 corresponde a el nombre del script asi que no se puede gastar
 
+####################COMPROBACION DE PARAMETROS ##################################
+if [ $# -ne 5 ]
+then
+  echo "Número de parámetros incorrectos"
+  echo "Sintaxis: $0 usuario contraseña usuariobd contraseñabd subdominio"
+	exit 1
+fi
+
 
 ########################PARAMETROS GLOBALES#################################
 USER=$1
@@ -87,4 +95,6 @@ mv $APACHE_VHOST $APACHE_DIRECTORY
 a2ensite $APACHE_VHOST
 $APACHE_RELOAD
 #Enviamos un correo con los datos y el log y los errores
+
+#Generamos el codigo de salida 0
 exit 0

@@ -44,15 +44,13 @@ useradd -d $HOME_USER -p $PASS $USER
 
 #Generamos la base de datos con los datos del usuario y su contraseña
 #Generamos la BD en mysql
-
-
-
+#Generamos todas las consultas en variables y luego las agregamos en la variable SQL 
 Q1="CREATE DATABASE IF NOT EXISTS $DB_NAME;"
 Q2="GRANT USAGE ON *.* TO $DB_USER@localhost IDENTIFIED BY '$DB_PASS';"
 Q3="GRANT ALL PRIVILEGES ON $DB_NAME.* TO $DB_USER@localhost;"
 Q4="FLUSH PRIVILEGES;"
 SQL="${Q1}${Q2}${Q3}${Q4}"
-$MYSQL -uroot -p -e "$SQL"
+$MYSQL -u $DB_ROOT -p$DB_ROOT_PASS -e "$SQL"
 
 #Generamos el vhost de apache y lo iniciamos
 

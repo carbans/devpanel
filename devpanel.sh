@@ -43,14 +43,14 @@ cp -rf $WORDPRESS_INSTALL_PATH $HOME_USER
 useradd -d $HOME_USER -p $PASS $USER
 
 #Generamos la base de datos con los datos del usuario y su contraseña
+echo 'CREATE DATABASE $DB_NAME' > database.sql
 
-
-mysql -u $DB_ROOT -p$DB_ROOT_PASS -e "CREATE DATABASE '$DB_NAME' ;"
+mysql -u $DB_ROOT -p$DB_ROOT_PASS < database.sql
 
 
 #Generamos la BD en mysql
 
-mysql -u $DB_ROOT -p$DB_ROOT_PASS -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS'; GRANT ALL PRIVILEGES '$DB_NAME'.* TO '$DB_USER'@'localhost';"
+#mysql -u $DB_ROOT -p$DB_ROOT_PASS -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS'; GRANT ALL PRIVILEGES '$DB_NAME'.* TO '$DB_USER'@'localhost';"
 
 #Generamos el vhost de apache y lo iniciamos
 

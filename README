@@ -1,0 +1,6 @@
+DevPanel es un panel de gestión para nuevos desarrollos
+Con este panel se pretende crear un sistema de gestión web para la creación de nuevos usuarios.
+La interfaz va a estar desarrollada bajo PHP y la interacción con el sistema se realizará mediante scripts de bash.
+
+
+In the form you must put the fields with the information and then devpanel.sh

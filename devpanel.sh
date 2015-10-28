@@ -4,12 +4,13 @@
 #
 #
 #@Author: Carlos Latorre Sánchez
+#El parametro $0 corresponde a el nombre del script asi que no se puede gastar
 
-USER=$0
-PASS=$1
-USERDB=$2
-PASSDB=$3
-SUBDOMAIN=$4
+USER=$1
+PASS=$2
+USERDB=$3
+PASSDB=$4
+SUBDOMAIN=$5
 
 ########################PARAMETROS GLOBALES#################################
 HOME_USER=/var/www/$SUBDOMAIN

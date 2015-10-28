@@ -50,7 +50,7 @@ rm -rf database.sql
 
 #Generamos la BD en mysql
 
-echo 'CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS'; GRANT ALL PRIVILEGES '$DB_NAME'.* TO '$DB_USER'@'localhost';' > database.sql
+echo 'CREATE USER '$DB_USER'@localhost IDENTIFIED BY '$DB_PASS'; GRANT ALL PRIVILEGES '$DB_NAME'.* TO '$DB_USER'@localhost;' > database.sql
 mysql -u $DB_ROOT -p$DB_ROOT_PASS $DB_NAME < database.sql
 rm -rf database.sql
 

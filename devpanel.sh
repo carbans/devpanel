@@ -7,12 +7,12 @@
 
 USER=$0
 PASS=$1
-USERDB=$3
-PASSDB=$4
-SUBDOMAIN=$5
+USERDB=$2
+PASSDB=$3
+SUBDOMAIN=$4
 
 ########################PARAMETROS GLOBALES#################################
-HOME_USER=/var/www/$subdomain
+HOME_USER=/var/www/$SUBDOMAIN
 EMAIL='persona@correotuempresa.com'
 WORDPRESS_INSTALL_PATH=/var/www/wordpress/
 
@@ -20,9 +20,9 @@ WORDPRESS_INSTALL_PATH=/var/www/wordpress/
 ########## VARIABLE CONEXIÓN BD #####################3
 DB_ROOT='root'
 DB_ROOT_PASS='prueba'
-DB_USER=$userdb
-DB_PASS=$passdb
-DB_NAME=$userdb
+DB_USER=$USERDB
+DB_PASS=$PASSDB
+DB_NAME=$USERDB
 
 
 #################### LOG ##########################################
@@ -44,12 +44,12 @@ useradd -d $HOME_USER -p $PASS $USER
 #Generamos la base de datos con los datos del usuario y su contraseña
 
 
-mysql -u ${DB_ROOT} -p${DB_ROOT_PASS} -e "CREATE DATABASE '${DB_NAME}' ;"
+mysql -u $DB_ROOT -p$DB_ROOT_PASS -e "CREATE DATABASE '$DB_NAME' ;"
 
 
 #Generamos la BD en mysql
 
-mysql -u ${DB_ROOT} -p${DB_ROOT_PASS} -e "CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASS}'; GRANT ALL PRIVILEGES '${DB_NAME}'.* TO '${DB_USER}'@'localhost';"
+mysql -u $DB_ROOT -p$DB_ROOT_PASS -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS'; GRANT ALL PRIVILEGES '$DB_NAME'.* TO '$DB_USER'@'localhost';"
 
 #Generamos el vhost de apache y lo iniciamos
 
